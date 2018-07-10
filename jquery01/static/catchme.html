@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <title>Catch me if you can</title>
+    <meta charset="utf-8">
+    <style>
+        .magicBox {
+            position: absolute;
+            width: 160px;
+            height: 60px;
+            font-size: xx-large;
+            background-color: palegreen;
+            color: blue;
+            vertical-align: middle;
+            text-align: center;
+            border-radius: 85px;
+            border: solid 2px gray;
+            box-shadow: 3px 3px 2px grey, 0 0 25px yellow, 0 0 5px yellowgreen;
+            text-shadow: 1px 1px 2px brown, 0 0 25px pink, 0 0 5px pink;
+        }
+    </style>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script>
+        var bleft = 0;
+        var btop = 0;
+        $(document).ready(function() {
+            function displace() {
+                xdir = Math.random() * 4 - 2;
+                ydir = Math.random() * 4 - 2;
+                console.log("xdir: ", xdir);
+                bleft = ((bleft + xdir * 100) + 750) % 750;
+                btop = ((btop + ydir * 60) + 400) % 400;
+                style_info = "position: relative; left: " + bleft + "px; top: " + btop + "px;";
+                console.log(style_info);
+
+                $(this).animate({"top": btop, "left": bleft});
+            }
+            $("div#box").hover(displace);
+        });
+    </script>
+</head>
+
+<body style="width: 1000px; height: 500px;">
+    <div id="box" class="magicBox"><p style="position: relative; top: -20px; height: 30px">catch me</p></div>
+</body>
+</html>

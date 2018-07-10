@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <title>jQuery Samples</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <meta charset="utf-8" />
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            console.log("document is ready now");
+            $("h2").click(function(){
+                console.log("hiding h2 tag");
+                $(this).hide();
+            });
+            $('#link1').click(function() {
+                console.log("link1 is clicked. Will be redirecting to sample01.html");
+                //$(location).attr('href', "sample01.html");
+                window.location.href = "sample01.html";
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Welcome to jQuery Samples</h1>
+    <h2>catch me if you can</h2>
+    <p id='link1'>Goto to ஆப்பு >>> </p>
+    <p><a href="catchme.html">Catch me Game !!</a></p>
+    <p><a href="puffer.html">Puffer !!</a></p>
+    <p><a href="puffer-local.html">Attendance !!</a></p>
+    <p><a href="ajx/index.html">Ajax Samples >></a></p>
+</body>
+</html>

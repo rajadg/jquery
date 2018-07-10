@@ -1,0 +1,342 @@
+[
+  {
+    "Selector": "*",
+    "Example": "$(\"*\")",
+    "Selects": "All elements"
+  },
+  {
+    "Selector": "#id",
+    "Example": "$(\"#lastname\")",
+    "Selects": "The element with id=\"lastname"
+  },
+  {
+    "Selector": ".class",
+    "Example": "$(\".intro\")",
+    "Selects": "All elements with class=\"intro"
+  },
+  {
+    "Selector": ".class,.class",
+    "Example": "$(\".intro,.demo\")",
+    "Selects": "All elements with the class \"intro\" or \"demo"
+  },
+  {
+    "Selector": "element",
+    "Example": "$(\"p\")",
+    "Selects": "All <p> elements"
+  },
+  {
+    "Selector": "el1,el2,el3",
+    "Example": "$(\"h1,div,p\")",
+    "Selects": "All <h1>, <div> and <p> elements"
+  },
+  {
+    "Selector": "",
+    "Example": "",
+    "Selects": ""
+  },
+  {
+    "Selector": ":first",
+    "Example": "$(\"p:first\")",
+    "Selects": "The first <p> element"
+  },
+  {
+    "Selector": ":last",
+    "Example": "$(\"p:last\")",
+    "Selects": "The last <p> element"
+  },
+  {
+    "Selector": ":even",
+    "Example": "$(\"tr:even\")",
+    "Selects": "All even <tr> elements"
+  },
+  {
+    "Selector": ":odd",
+    "Example": "$(\"tr:odd\")",
+    "Selects": "All odd <tr> elements"
+  },
+  {
+    "Selector": "",
+    "Example": "",
+    "Selects": ""
+  },
+  {
+    "Selector": ":first-child",
+    "Example": "$(\"p:first-child\")",
+    "Selects": "All <p> elements that are the first child of their parent"
+  },
+  {
+    "Selector": ":first-of-type",
+    "Example": "$(\"p:first-of-type\")",
+    "Selects": "All <p> elements that are the first <p> element of their parent"
+  },
+  {
+    "Selector": ":last-child",
+    "Example": "$(\"p:last-child\")",
+    "Selects": "All <p> elements that are the last child of their parent"
+  },
+  {
+    "Selector": ":last-of-type",
+    "Example": "$(\"p:last-of-type\")",
+    "Selects": "All <p> elements that are the last <p> element of their parent"
+  },
+  {
+    "Selector": ":nth-child(n)",
+    "Example": "$(\"p:nth-child(2)\")",
+    "Selects": "All <p> elements that are the 2nd child of their parent"
+  },
+  {
+    "Selector": ":nth-last-child(n)",
+    "Example": "$(\"p:nth-last-child(2)\")",
+    "Selects": "All <p> elements that are the 2nd child of their parent, counting from the last child"
+  },
+  {
+    "Selector": ":nth-of-type(n)",
+    "Example": "$(\"p:nth-of-type(2)\")",
+    "Selects": "All <p> elements that are the 2nd <p> element of their parent"
+  },
+  {
+    "Selector": ":nth-last-of-type(n)",
+    "Example": "$(\"p:nth-last-of-type(2)\")",
+    "Selects": "All <p> elements that are the 2nd <p> element of their parent, counting from the last child"
+  },
+  {
+    "Selector": ":only-child",
+    "Example": "$(\"p:only-child\")",
+    "Selects": "All <p> elements that are the only child of their parent"
+  },
+  {
+    "Selector": ":only-of-type",
+    "Example": "$(\"p:only-of-type\")",
+    "Selects": "All <p> elements that are the only child, of its type, of their parent"
+  },
+  {
+    "Selector": "",
+    "Example": "",
+    "Selects": ""
+  },
+  {
+    "Selector": "parent > child",
+    "Example": "$(\"div > p\")",
+    "Selects": "All <p> elements that are a direct child of a <div> element"
+  },
+  {
+    "Selector": "parent descendant",
+    "Example": "$(\"div p\")",
+    "Selects": "All <p> elements that are descendants of a <div> element"
+  },
+  {
+    "Selector": "element + next",
+    "Example": "$(\"div + p\")",
+    "Selects": "The <p> element that are next to each <div> elements"
+  },
+  {
+    "Selector": "element ~ siblings",
+    "Example": "$(\"div ~ p\")",
+    "Selects": "All <p> elements that are siblings of a <div> element"
+  },
+  {
+    "Selector": "",
+    "Example": "",
+    "Selects": ""
+  },
+  {
+    "Selector": ":eq(index)",
+    "Example": "$(\"ul li:eq(3)\")",
+    "Selects": "The fourth element in a list (index starts at 0)"
+  },
+  {
+    "Selector": ":gt(no)",
+    "Example": "$(\"ul li:gt(3)\")",
+    "Selects": "List elements with an index greater than 3"
+  },
+  {
+    "Selector": ":lt(no)",
+    "Example": "$(\"ul li:lt(3)\")",
+    "Selects": "List elements with an index less than 3"
+  },
+  {
+    "Selector": ":not(selector)",
+    "Example": "$(\"input:not(:empty)\")",
+    "Selects": "All input elements that are not empty"
+  },
+  {
+    "Selector": "",
+    "Example": "",
+    "Selects": ""
+  },
+  {
+    "Selector": ":header",
+    "Example": "$(\":header\")",
+    "Selects": "All header elements <h1>, <h2> ..."
+  },
+  {
+    "Selector": ":animated",
+    "Example": "$(\":animated\")",
+    "Selects": "All animated elements"
+  },
+  {
+    "Selector": ":focus",
+    "Example": "$(\":focus\")",
+    "Selects": "The element that currently has focus"
+  },
+  {
+    "Selector": ":contains(text)",
+    "Example": "$(\":contains('Hello')\")",
+    "Selects": "All elements which contains the text \"Hello"
+  },
+  {
+    "Selector": ":has(selector)",
+    "Example": "$(\"div:has(p)\")",
+    "Selects": "All <div> elements that have a <p> element"
+  },
+  {
+    "Selector": ":empty",
+    "Example": "$(\":empty\")",
+    "Selects": "All elements that are empty"
+  },
+  {
+    "Selector": ":parent",
+    "Example": "$(\":parent\")",
+    "Selects": "All elements that are a parent of another element"
+  },
+  {
+    "Selector": ":hidden",
+    "Example": "$(\"p:hidden\")",
+    "Selects": "All hidden <p> elements"
+  },
+  {
+    "Selector": ":visible",
+    "Example": "$(\"table:visible\")",
+    "Selects": "All visible tables"
+  },
+  {
+    "Selector": ":root",
+    "Example": "$(\":root\")",
+    "Selects": "The document's root element"
+  },
+  {
+    "Selector": ":lang(language)",
+    "Example": "$(\"p:lang(de)\")",
+    "Selects": "All <p> elements with a lang attribute value starting with \"de"
+  },
+  {
+    "Selector": "",
+    "Example": "",
+    "Selects": ""
+  },
+  {
+    "Selector": "[attribute]",
+    "Example": "$(\"[href]\")",
+    "Selects": "All elements with a href attribute"
+  },
+  {
+    "Selector": "[attribute=value]",
+    "Example": "$(\"[href='default.htm']\")",
+    "Selects": "All elements with a href attribute value equal to \"default.htm"
+  },
+  {
+    "Selector": "[attribute!=value]",
+    "Example": "$(\"[href!='default.htm']\")",
+    "Selects": "All elements with a href attribute value not equal to \"default.htm"
+  },
+  {
+    "Selector": "[attribute$=value]",
+    "Example": "$(\"[href$='.jpg']\")",
+    "Selects": "All elements with a href attribute value ending with \".jpg"
+  },
+  {
+    "Selector": "[attribute|=value]",
+    "Example": "$(\"[title|='Tomorrow']\")",
+    "Selects": "All elements with a title attribute value equal to 'Tomorrow', or starting with 'Tomorrow' followed by a hyphen"
+  },
+  {
+    "Selector": "[attribute^=value]",
+    "Example": "$(\"[title^='Tom']\")",
+    "Selects": "All elements with a title attribute value starting with \"Tom"
+  },
+  {
+    "Selector": "[attribute~=value]",
+    "Example": "$(\"[title~='hello']\")",
+    "Selects": "All elements with a title attribute value containing the specific word \"hello"
+  },
+  {
+    "Selector": "[attribute*=value]",
+    "Example": "$(\"[title*='hello']\")",
+    "Selects": "All elements with a title attribute value containing the word \"hello"
+  },
+  {
+    "Selector": "",
+    "Example": "",
+    "Selects": ""
+  },
+  {
+    "Selector": ":input",
+    "Example": "$(\":input\")",
+    "Selects": "All input elements"
+  },
+  {
+    "Selector": ":text",
+    "Example": "$(\":text\")",
+    "Selects": "All input elements with type=\"text"
+  },
+  {
+    "Selector": ":password",
+    "Example": "$(\":password\")",
+    "Selects": "All input elements with type=\"password"
+  },
+  {
+    "Selector": ":radio",
+    "Example": "$(\":radio\")",
+    "Selects": "All input elements with type=\"radio"
+  },
+  {
+    "Selector": ":checkbox",
+    "Example": "$(\":checkbox\")",
+    "Selects": "All input elements with type=\"checkbox"
+  },
+  {
+    "Selector": ":submit",
+    "Example": "$(\":submit\")",
+    "Selects": "All input elements with type=\"submit"
+  },
+  {
+    "Selector": ":reset",
+    "Example": "$(\":reset\")",
+    "Selects": "All input elements with type=\"reset"
+  },
+  {
+    "Selector": ":button",
+    "Example": "$(\":button\")",
+    "Selects": "All input elements with type=\"button"
+  },
+  {
+    "Selector": ":image",
+    "Example": "$(\":image\")",
+    "Selects": "All input elements with type=\"image"
+  },
+  {
+    "Selector": ":file",
+    "Example": "$(\":file\")",
+    "Selects": "All input elements with type=\"file"
+  },
+  {
+    "Selector": ":enabled",
+    "Example": "$(\":enabled\")",
+    "Selects": "All enabled input elements"
+  },
+  {
+    "Selector": ":disabled",
+    "Example": "$(\":disabled\")",
+    "Selects": "All disabled input elements"
+  },
+  {
+    "Selector": ":selected",
+    "Example": "$(\":selected\")",
+    "Selects": "All selected input elements"
+  },
+  {
+    "Selector": ":checked",
+    "Example": "$(\":checked\")",
+    "Selects": "All checked input elements"
+  }
+]

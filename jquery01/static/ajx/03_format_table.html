@@ -1,0 +1,141 @@
+<html>
+
+<head>
+	<title>Formatting Table</title>
+	<meta charset="utf-8" />
+	<style>
+
+	td {
+		height: 32px;
+	}
+	.span_regular {
+		padding: 5px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.header {
+		background-color: darkcyan;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+	}
+
+	.even {
+		background-color: #efefef;
+		font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	}
+
+	.odd {
+		background-color: white;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
+
+	.first_col {
+		width: 250px;
+		font-weight: bold;
+		padding-left: 20px;
+	}
+
+	.second_col {
+		width: 250px;
+		font-style: italic;
+	}
+
+	.focused {
+		height: 40px;
+		font-size: large;
+		color: blue;
+	}
+
+	.highlight {
+		background-color: yellow;
+	}
+
+	.focus_span {
+		border-radius: 10px;
+		border: solid 2px silver;
+		background-color: lightyellow;
+		box-shadow: 3px 3px 2px grey, 0 0 25px skyblue, 0 0 5px yellowgreen;
+		text-shadow: 1px 1px 2px palegreen, 0 0 25px yellow, 0 0 5px yellowgreen;
+	}
+
+</style>
+</head>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	console.log("document is ready. Loading data from selectors.json file");
+	$.get("selectors.json", function (data, status) {
+		console.log("status:", status);
+		if (status == "success"){
+			var index = 0;
+			data.forEach(element => {
+				if (element["Selector"] == "" ) {
+					$("#sel").append("<tr></tr>");
+					return;
+				}
+				$("#sel").append("<tr><td><span></span></td><td></td><td></td></tr>");
+				var row = $("#sel tr").last();
+				var cells = row.children();
+				// console.log(cells[0], element);
+				$("#sel tr:last").mouseover(function() {
+					$(this).addClass("focused");
+					$(this).children().addClass("highlight");
+				});
+				$("#sel tr:last").mouseout(function() {
+					$(this).removeClass("focused");
+					$(this).children().removeClass("highlight");
+				});
+				$("tr:last span").text(element["Selector"]);
+				cells[1].innerText = element["Example"];
+				cells[2].innerText = element["Selects"];
+				index = index + 1;
+			});
+			// Table
+			$("table").attr({style: "border: solid 1px gray"});
+			// Set the style for table header
+			$("thead").attr({class: "header"});
+			$("thead").css({"font-size": "large", "font-weight": "bolder", color: "white", height: "40px"});
+			// Set the style for all odd rows (1,3,5,7,...)
+			$("tr:odd td").attr({class: "odd"});
+			// Set the style for all even rows (2,4,6,8,...)
+			$("tr:even td").attr({class: "even"});
+			// Select all 'td' which are first td for their parent
+			// This means first column for all rows
+			$("td:first-of-type").attr("class", function(index, val){
+				$(this).attr({class: val + " first_col"});
+			});
+			$("td:last-of-type").css("padding-right", "20px");
+			// Second column gets a different style (for width, italic)
+			// Same requirement as first column, but done using addClass
+			// Using addClass makes the code less complex
+			$("td:nth-of-type(2)").addClass("second_col");
+
+			$("span").addClass("span_regular");
+
+			// round border for first column item on hightlight only
+			$("td:first-of-type").parent().mouseover(function () {
+				$(this).find("span").addClass("focus_span");
+			});
+			// round border for first column item on hightlight only
+			$("td:first-of-type").parent().mouseout(function () {
+				$(this).find("span").removeClass("focus_span");
+			});
+
+		}
+	});
+});
+</script>
+
+<body>
+	<h1>03. Table formatting sample</h1>
+	<h2>Retrieves table data and formats it</h2>
+
+	<table id="sel" cellspacing="0" border="0">
+		<thead>
+			<th>Item</th>
+			<th>Example</th>
+			<th>Description</th>
+		</thead>
+	</table>
+</body>
+
+</html>

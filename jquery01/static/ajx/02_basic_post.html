@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Basic Sample 02</title>
+</head>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("document loaded. loading body using jquery ajax");
+        // Document has loaded.
+        // Invoke the HTTP GET call using jquery
+        $.post("/userlogin", {
+            "user": "test",
+            "password": "stars"
+        }, function (data, status) {
+            console.log("status: ", status);
+            if ("success" == status) {
+                // Iterate through each item in the result
+                // create a list item with anchor tag
+                $("#user_info").append("<p>user:" + data["user"] + "</p>");
+                $("#user_info").append("<p>password:" + data["password"] + "</p>");
+            }
+        });
+
+    });
+</script>
+
+<body>
+    <h1>Basic Ajax jQuery Sample 02</h1>
+    <h2>Demonstrates a http post call</h2>
+    <div id="user_info"></div>
+</body>
+
+</html>

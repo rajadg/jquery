@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>A Puffer sample</title>
+    <meta charset="utf-8">
+    <style>
+        .magicBox {
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            width: 200px;
+            height: 200px;
+            font-size: 10px;
+            background-color: turquoise;
+            color: brown;
+            text-align: center;
+            border-radius: 100px;
+            border: solid 1px blue;
+            box-shadow: 3px 3px 2px grey, 0 0 25px greenyellow, 0 0 5px green;
+            text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px white;
+        }
+    </style>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/resources.js"></script>
+    <script src="../lang.js"></script>
+    <script>
+        var bleft = 0;
+        var btop = 0;
+        var lang = "ta";
+        console.log("default lang:", lang);
+        for (i in lang_list) {
+            console.log("checking lang: ", lang);
+            if (lang_list[i] in res){
+                lang = lang_list[i];
+                break;
+            }
+        }
+        console.log("assigned lang:", lang);
+
+        $(document).ready(function () {
+            $("#l1").text(res[lang]["l1"]);
+            $("#l2").text(res[lang]["l2"]);
+            $("#minion").mouseenter(function () {
+                $("#box").animate({
+                    "left": "150px",
+                    "top": "150px",
+                    "width": "300px",
+                    "height": "300px",
+                    "border-radius": "150px",
+                    "font-size": "28px"
+                });
+                $("#minion").animate({
+                    "height": "150px",
+                    "width": "150px"
+                });
+                $("#header").animate({
+                    "height": "5px"
+                });
+            });
+            $("#minion").mouseleave(function () {
+                $("#header").animate({
+                    "height": "25px"
+                });
+                $("#minion").animate({
+                    "height": "70px",
+                    "width": "70px"
+                });
+                $("#box").animate({
+                    "left": "200px",
+                    "top": "200px",
+                    "width": "200px",
+                    "height": "200px",
+                    "border-radius": "100px",
+                    "font-size": "10px"
+                });
+            });
+        });
+    </script>
+</head>
+
+<body style="width: 1000px; height: 600px;">
+    <div id="box" class="magicBox">
+        <div id="header" style="height: 25px">&nbsp;</div>
+        <p id="l1" style="height: 10px">Sir...</p>
+        <p id="l2" style="height: 10px">Yes Sir</p>
+        <img id="minion" style="height: 60px; width: 60px;" src="./images/Minion-Hello-icon.png" />
+    </div>
+</body>
+
+</html>
