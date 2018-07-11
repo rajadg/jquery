@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("lang.js", app_info.lang_info),
     path("userlogin", app_info.login_info),
+    path("getUsageLog", app_info.get_usage_log),
 ]

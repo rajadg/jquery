@@ -1,0 +1,259 @@
+<html>
+
+<head>
+    <title>04 Expanding Results jQuery Sample</title>
+</head>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    var last_item = -1;
+    var reqUrl = "../../getUsageLog";
+    var page_size = 75;
+    var selectedRow = null;
+    $(document).ready(function () {
+        more_songs();
+        $("#more").click(more_songs);
+        $("#search").keyup(on_search);
+        $("#load_all").click(load_all_songs);
+    });
+
+    function load_all_songs() {
+        page_size = -1;
+        more_songs();
+        $("#load_all").css({"disabled": true});
+        $("#more").css({"disabled": true});
+    }
+    function more_songs() {
+        // Make the get url with query string
+        new_url = reqUrl + "?" + $.param({
+            first_item: last_item + 1,
+            page_size: page_size
+        });
+        console.log(new_url);
+        // Make the ajax call
+        $.ajax({
+            url: new_url,
+            success: function (result, status, xhr) {
+                // On success, get the result and update the table
+                console.log(result);
+                items = result["items"];
+                if (result["count"] <= 0) {
+                    $("#more").attr({
+                        disabled: true
+                    });
+                    return;
+                }
+                index = last_item;
+                append_songs(items, index);
+                last_item = result["last_item"];
+            }
+        });
+    }
+
+    function append_songs(songs, index) {
+        songs.forEach(song => {
+            index = index + 1;
+            $("#songs").append("<tr></tr>");
+            row = $("#songs tr:last");
+            row.data(song);
+            row.click(select_row);
+            row.append("<td class='td_int song_td'>" + index + "</td>");
+            row.append("<td class='td_text song_td'>" + song["title"] + "</td>");
+            row.append("<td class='td_text song_td'>" + song["album"] + "</td>");
+            row.append("<td class='td_text song_td'>" + song["composer"] + "</td>");
+            row.append("<td class='td_int song_td'>" + song["duration"] + "</td>");
+            if (index % 2 == 0) {
+                row.addClass("even_row");
+            } else {
+                row.addClass("odd_row");
+            }
+        });
+    }
+
+    function select_row() {
+        if (null != selectedRow) {
+            selectedRow.removeClass("selected_row");
+            selectedRow.css("background-color", "transparent");
+        }
+        selectedRow = $(this);
+        selectedRow.addClass("selected_row");
+        selectedRow.css("background-color", "yellow");
+        $("#d_title").text(selectedRow.data("title"));
+        $("#d_album").text(selectedRow.data("album"));
+        $("#d_artist").text(selectedRow.data("artist"));
+        $("#d_composer").text(selectedRow.data("composer"));
+        $("#d_year").text(selectedRow.data("year"));
+    }
+
+    function on_search() {
+        var query = $(this).val();
+        // console.log(query);
+        var selection_rows = $(".song_td").filter(":contains('" + query + "')").parent();
+        //var found = jQuery.unique(selection_rows.toArray());
+        // found.forEach(item => { console.log(item.innerHTML); });
+        //var all_items = jQuery.unique($(".song_td").parent().toArray());
+        selection_rows.show();
+        var remaining = $(".song_td").parent().not(selection_rows);
+        //console.log(found.length, "/", all_items.length, "==>", remaining.length);
+        remaining.hide();
+    }
+</script>
+<style type="text/css">
+    .header {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        height: 160px;
+        z-index: 10;
+        background-color: white;
+        border-bottom: solid 1px gray;
+        width: 99%;
+    }
+
+    .content {
+        position: absolute;
+        top: 161px;
+        left: 10px;
+        z-index: 2;
+    }
+
+    .false_button {
+        border: solid 1px gray;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+        background-color: aliceblue;
+        box-shadow: 3px 3px 1px gray, 0 0 5px skyblue, 0 0 2px yellow;
+        font-weight: bold;
+    }
+
+    table#songs {
+        border-left: solid 1px black;
+        border-top: solid 1px black;
+        border-bottom: solid 1px black;
+    }
+
+    .song_td {
+        border-right: solid 1px black;
+        word-wrap: break-word;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        height: 20px;
+    }
+    .td_int {
+        width: 100px;
+    }
+    .td_text {
+        width: 250px;
+        padding-left: 10px;
+    }
+
+    thead {
+        background-color: gray;
+        font-size: x-large;
+        font-weight: bold;
+        height: 35px;
+        color: white;
+        position: fixed;
+        top: 161px;
+        padding-top: 5px;
+        vertical-align: middle;
+    }
+
+    .selected_row {
+        background-color: palegreen;
+        font-size: large;
+        font-weight: bold;
+        height: 32px;
+        color: blue;
+    }
+
+    .odd_row {
+        background-color: #eeeeee;
+    }
+
+    .even_row {
+        background-color: white;
+    }
+
+    .details_table {
+        width: auto;
+        border: solid 1px gray;
+        background-color: lightyellow;
+        padding: 10px;
+        box-shadow: 3px 3px 1px gray, 0 0 5px skyblue, 0 0 2px yellow;
+    }
+</style>
+
+<body>
+    <div id="header" class='header'>
+        <table cellspacing='0' cellpading='0' border='0' style="table-layout: auto">
+            <tr>
+                <td style="width: 400px;">
+                    <h1>04 Expanding Results</h1>
+                    <h3>A jQuery Sample</h3>
+
+                    <p>Click on the
+                        <span class='false_button'>more</span> button in the bottom to expand </p>
+                    <p style="height: 5px">&nbsp;</p>
+                </td>
+                <td>&nbsp;</td>
+                <td style="white-space:nowrap;" rowspan="2">
+                    <table cellspacing='0' cellpading='0' border='0' class="details_table">
+                        <tr>
+                            <td>Title </td>
+                            <td id="d_title" style="white-space:nowrap;" />
+                        </tr>
+                        <tr>
+                            <td>Album </td>
+                            <td id="d_album" style="white-space:nowrap;" />
+                        </tr>
+                        <tr>
+                            <td>Artist </td>
+                            <td id="d_artist" style="white-space:nowrap;" />
+                        </tr>
+                        <tr>
+                            <td>Composer </td>
+                            <td id="d_composer" style="white-space:nowrap;" />
+                        </tr>
+                        <tr>
+                            <td>Year </td>
+                            <td id="d_year" style="white-space:nowrap;" />
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr style="height: 20px">
+                <td colspan="2" style="text-align: left">
+                    Search:
+                    <input type="text" id="search" placeholder="Enter filter string" style="margin-left: 20px; min-width: 60%" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="data" class="content">
+        <table id="songs" cellspacing='0' cellpading='0' border='0' style="margin: 0px">
+            <thead>
+                <td class="td_int">Sno</td>
+                <td class="td_text">Title</td>
+                <td class="td_text">Album</td>
+                <td class="td_text">Composer</td>
+                <td class="td_int">Duration</td>
+            </thead>
+            <tr style="height: 40px;">
+                <td class="td_int">&nbsp;</td>
+                <td class="td_text">&nbsp;</td>
+                <td class="td_text">&nbsp;</td>
+                <td class="td_text">&nbsp;</td>
+                <td class="td_int">&nbsp;</td></tr>
+        </table>
+        <div style="text-align: center">
+            <input type="button" id="more" value="more" />
+        </div>
+        <div style="text-align: center">
+            <input type="button" id="load_all" value="All" />
+        </div>
+
+    </div>
+</body>
+
+</html>
